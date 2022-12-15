@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "../TheSystemOfIssuingCommandsToPawns/HUD/HUD_Selection/HUD_SelectionUnit.h"
 #include "PC_MainController.generated.h"
 
 UCLASS()
@@ -16,13 +17,19 @@ public:
 	APC_MainController();
 
 	virtual void Tick(float DeltaTime) override;
+	virtual void SetupInputComponent() override;
+
+	AHUD_SelectionUnit* HUDPtr;
 
 protected:
 
 	virtual void BeginPlay() override;
 
-private:
 	bool ShowMouseCursor = true;
 
 	void SettingsCursor();
+	
+	void SelectionPressed();
+	void SelectionReleased();
+	void MoveReleased();
 };
