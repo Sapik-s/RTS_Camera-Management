@@ -17,8 +17,26 @@ void AHUD_SelectionUnit::DrawHUD()
 {
 	if (bStartSelecting)
 	{
+		if (FoundActors.Num() > 0)
+		{
+			for (int i = 0; i < FoundActors.Num(); i++)
+			{
+				FoundActors[i]->SetDeselected();
+			}
+		}
+
+		FoundActors.Empty();
 		CurrentPoint = GetMousePosition2D();
 		DrawRect(FLinearColor(0, 0, 1, .15f), InitialPoint.X, InitialPoint.Y, CurrentPoint.X - InitialPoint.X, CurrentPoint.Y - InitialPoint.Y);
+		GetActorsInSelectionRectangle<APawnTank>(InitialPoint, CurrentPoint, FoundActors, false, false);
+		
+		if (FoundActors.Num() > 0)
+		{
+			for (int i = 0; i < FoundActors.Num(); i++)
+			{
+				FoundActors[i]->SetSelected();
+			}
+		}
 	}
 	
 }

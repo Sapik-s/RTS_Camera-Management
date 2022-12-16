@@ -32,4 +32,6 @@ protected:
 	void SelectionPressed();
 	void SelectionReleased();
 	void MoveReleased();
+
+	TArray<APawnTank*> SelectedActors;
 };

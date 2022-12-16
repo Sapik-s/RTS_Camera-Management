@@ -54,10 +54,19 @@ void APC_MainController::SelectionPressed()
 void APC_MainController::SelectionReleased()
 {
 	HUDPtr->bStartSelecting = false;
-	//HUDPtr->CurrentPoint = HUDPtr->GetMousePosition2D();
+	SelectedActors = HUDPtr->FoundActors;
 }
 
 void APC_MainController::MoveReleased()
 {
-
+	if (SelectedActors.Num() > 0)
+	{
+		for (int32 i = 0; i < SelectedActors.Num(); i++) {
+			FHitResult HitResult;
+			GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
+			FVector MoveLocation = HitResult.Location + FVector(i / 2 * 100, i % 2 * 100, 0);
+			//UNavigationSystem::SimpleMoveToLocation(SelectedActors[i]->GetController(), MoveLocation);
+			//DrawDebugSphere(GetWorld(), MoveLocation, 25, 10, FColor::Red, 3);
+		}
+	}
 }

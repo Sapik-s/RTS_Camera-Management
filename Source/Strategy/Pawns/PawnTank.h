@@ -18,6 +18,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void SetSelected();
+	void SetDeselected();
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -38,5 +41,4 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Custom | Actor Settings | Values | Movement", meta = (AllowPrivateAccess = "true"))
 	float RotateSpeed = 100.f;
-
 };

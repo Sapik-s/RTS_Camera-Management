@@ -6,7 +6,7 @@
 APawnTank::APawnTank()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 }
 
 void APawnTank::Tick(float DeltaTime)
@@ -49,4 +49,14 @@ void APawnTank::Move()
 void APawnTank::Rotate()
 {
 	AddActorLocalRotation(FQuat(RotationDirection), true);
+}
+
+void APawnTank::SetSelected()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Actor Selected"));
+}
+
+void APawnTank::SetDeselected()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Actor Deselected"));
 }
